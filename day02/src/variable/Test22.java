@@ -1,5 +1,5 @@
 package variable;
 
-public class Text22 {
+public class Test22 {
   
 }
