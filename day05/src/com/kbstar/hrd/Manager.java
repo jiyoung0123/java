@@ -18,19 +18,19 @@ public class Manager {
 	
 	public int getAnnsalary() {
 		int result= 0;
-		result = salary*12;
+		result = (this.salary+this.bonus)*12;
 		return  result;
 	}
 	
 	public double getTax() {
 		double result = 0.0;
-		result = (this.salary+this.bonus)*12;
+		result = (this.salary+this.bonus)*0.17;
 		return result;
 	}
 	
 	public double getAnnTax() {
 		double result = 0;
-		result = (this.salary+this.bonus)*0.17;
+		result = this.getAnnsalary()*0.17;
 		return result;
 	}
 	

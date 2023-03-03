@@ -3,6 +3,7 @@ package aggregation;
 public class Human {
 	private String name;
 	private Car car;
+		
 	
 	public Human() {
 	}
@@ -45,7 +46,7 @@ public class Human {
 	}
 	
 	public void stopCar() {
-		car.stop();
+		car.stop(); 
 	}
 
 

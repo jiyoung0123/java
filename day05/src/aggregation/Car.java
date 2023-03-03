@@ -11,8 +11,7 @@ public class Car {
 		this.size = 1000;
 	}
 
-	// constructor는 이름이 같아도, 들어가는 내용이 달라지면
-
+	// constructor는 이름이 같아도, 들어가는 내용이 달라지면 가능함
 	public Car(String name, String color, int size) {
 		this.name = name;
 		this.color = color;

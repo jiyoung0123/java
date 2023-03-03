@@ -11,7 +11,7 @@ public class Account {
 	//계좌번호를 생성하는 로직은 굉장히 복잡, 그러니, 계좌번호 생성하는 class를 만들어서 가져다가 쓰자
 	public Account() {	
 		
-		//MakeAccountNumber makenum = new MakeAccNumber();
+		//MakeAccountNumber makenum = new MakeAccountNumber();
 		//static을 하면 객체 생성하지 않고 클래스.함수 이렇게 사용할 수 있다 
 		this.accNum = MakeAccountNumber.makeAccNum();
 	}

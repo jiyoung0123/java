@@ -2,11 +2,12 @@ package access;
 
 public class Employee {
 
-	// 실제로 변수에 private protected를 사용하진 않음
+	//실제로 변수에 private, protected를 사용하진 않음
 	//같은 팀 내에서 사용 가능한건, private와 protected 임.
+	//protected는 동일 package의 모든 class와 자식class내에선 접근 가능
 	private String id;
 	protected String name;
-	int salary; // 아무것도 안 쓰면 default임
+	int salary; // 아무것도 안 쓰면 default임-동일 package의 모든 class
 
 	public Employee() {
 	}
