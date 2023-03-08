@@ -8,6 +8,8 @@ import com.kbstar.frame.Service;
 public class UserService implements Service<String, UserDTO>{
 	DAO<String, UserDTO> dao;
 	
+	
+	//constructor
 	public UserService() {
 		dao = new UserDAO();
 	}
@@ -35,9 +37,7 @@ public class UserService implements Service<String, UserDTO>{
 
 	//@Override
 	//public void search() {
-		// search 라는 기능이 필요해서 넣기는 했지만interface에 넣었지만 이 class에서는 필요없어서, 안씀
-		
-		
+    // search 라는 기능이 필요해서 넣기는 했지만interface에 넣었지만 이 class에서는 필요없어서, 안씀				
 	//}
 
 	
