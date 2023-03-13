@@ -1,21 +1,19 @@
 package com.kbstar.app;
 
+import java.util.List;
 import java.util.Scanner;
 
 import com.kbstar.dto.AccountDTO;
 import com.kbstar.dto.TransactionDTO;
 import com.kbstar.dto.UserDTO;
 import com.kbstar.frame.BankService;
-import com.kbstar.frame.CRUDService;
 import com.kbstar.service.BankServiceImpl;
-import com.kbstar.service.UserService;
 
 public class App {
 
 	public static void main(String[] args) {
 		BankService<UserDTO, AccountDTO, TransactionDTO, String, String> service = new BankServiceImpl();
-		CRUDService<String, UserDTO> userService = new UserService();
-		
+				
 		Scanner sc = new Scanner(System.in);
 		
 		
@@ -75,6 +73,11 @@ public class App {
 							
 						} else if (cmn.equals("a")) {
 							System.out.println("Select Account");
+							List<AccountDTO> list =null;
+							 list = service.getAllAccount(user.getId());
+							 for(AccountDTO acc:list) {
+								 System.out.println(acc);
+							 }
 
 						} else if (cmn.equals("i")) {
 							System.out.println("User Info...");
@@ -85,6 +88,13 @@ public class App {
 
 						} else if (cmn.equals("tr")) {
 							System.out.println("Select transaction...");
+							String accNo=sc.next();
+							List<TransactionDTO> list = null;
+							list = service.getAlltr(accNo);
+							for(TransactionDTO tr: list) {
+								System.out.println(tr);
+							}
+							
 
 						}
 					}
