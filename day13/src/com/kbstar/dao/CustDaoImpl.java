@@ -1,14 +1,11 @@
 package com.kbstar.dao;
 
-import java.io.FileInputStream;
 import java.sql.Connection;
-import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 
 import com.kbstar.dto.Cust;
 import com.kbstar.frame.DAO;
@@ -32,23 +29,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 
 	// getConnection 이라는 함수를 만들어서 쓰기로...
 	// insert delete 등 등 할 때마다 이거 바로 쓰려고..
-	public Connection getConnection() throws Exception {
-		Connection con = null;
-
-		// java 소스에 id pwd 넣어놓는건, 보안상, 변경되었을 때 번거로우니
-		// txt 파일에 넣어두구 실행할 때마다 읽어서 실행
-		Properties props = new Properties();
-		String fileName = "db_info.txt";
-		FileInputStream in = new FileInputStream(fileName);
-		props.load(in);
-
-		// db_info.txt 라는 파일에다가 얘네들을 넣어놓을거라는 뜻
-		String id = props.getProperty("DB_ID");
-		String pwd = props.getProperty("DB_PWD");
-		String url = props.getProperty("DB_URL");
-
-		return con;
-	}
+	
 
 	@Override
 	public void insert(Cust v) throws Exception {
@@ -73,13 +54,12 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 	public void delete(String k) throws Exception {
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.deletesql);) {
 			pstmt.setString(1, k);
-
 			// 해당 사항이 없으면, 예외로 안나오고 result가 0으로 나옴
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
-				throw new Exception("해당 ID가 존재하지 않습니다.");
+				throw new Exception();
 			}
-			System.out.println(result);
+			System.out.println(result+" 건 삭제완료 ");
 		} catch (SQLException e1) {
 			throw e1;
 		}

@@ -5,24 +5,18 @@ import com.kbstar.dto.Item;
 import com.kbstar.frame.CRUDService;
 import com.kbstar.service.ItemCRUDServiceImpl;
 
-public class CustInsertTest {
+public class ItemInsertTest {
 
 	public static void main(String[] args) {
-		CRUDService<String, Item> service = new ItemCRUDServiceImpl();
+		CRUDService<String, Item> crudService = new ItemCRUDServiceImpl();
 		
-		Item obj = new Item("pants", 20000, 3.2);
+		Item item = new Item("감자", 5000, 2.2);
 		try {
-			service.register(obj);
+			crudService.register(item);
 			System.out.println("성공");
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
 		}
+	}}
 		
 		
-		
-		
-		
-
-	}
-
-}
