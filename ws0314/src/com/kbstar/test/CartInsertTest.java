@@ -1,0 +1,21 @@
+package com.kbstar.test;
+
+import com.kbstar.dto.Cart;
+import com.kbstar.frame.CRUDService;
+import com.kbstar.service.CartCRUDServiceImpl;
+
+public class CartInsertTest {
+
+	public static void main(String[] args) {
+		CRUDService<String, Cart> service = new CartCRUDServiceImpl();
+		
+		Cart cart = new Cart("낑낑깡깡","pants02",2);
+		try {
+			service.register(cart);
+		} catch (Exception e) {
+			System.out.println(e.getMessage());
+		}
+
+	}
+
+}
