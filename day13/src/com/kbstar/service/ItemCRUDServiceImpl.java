@@ -92,6 +92,7 @@ public class ItemCRUDServiceImpl implements CRUDService<String, Item>{
 			if (e instanceof SQLRecoverableException) {
 				throw new Exception("시스템오류");
 			} else {
+				e.printStackTrace();
 				throw new Exception("데이터 없음");
 			}
 		}

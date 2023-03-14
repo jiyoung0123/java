@@ -9,15 +9,13 @@ import com.kbstar.service.ItemCRUDServiceImpl;
 public class ItemSelectTest {
 
 	public static void main(String[] args) {
-		CRUDService<String, Item> crudService = new ItemCRUDServiceImpl();
+		CRUDService<String, Item> itemService = new ItemCRUDServiceImpl();
 		Item item = null;
+		
 		try {
-			item = crudService.get("2023314113100");
+			item = itemService.get("2023314113100");
 			System.out.println(item);
+			
 		} catch (Exception e) {
 			System.out.println(e.getMessage());
-		}
-
-	}
-
-}
+		}}}

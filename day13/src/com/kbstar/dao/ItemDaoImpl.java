@@ -109,7 +109,7 @@ public class ItemDaoImpl implements DAO<String, String, Item> {
 					String name = rSet.getString("name");
 					int price = rSet.getInt("price");
 					double rate = rSet.getDouble("rate");
-					Date regdate = rSet.getDate("date");
+					Date regdate = rSet.getDate("regdate");
 
 					item = new Item(id, name, price, rate, regdate);
 					list.add(item);
@@ -123,7 +123,6 @@ public class ItemDaoImpl implements DAO<String, String, Item> {
 		}
 		return list;
 	}
-
 	@Override
 	public List<Item> search(String k) throws Exception {
 		// TODO Auto-generated method stub
