@@ -27,7 +27,7 @@ public class TransactionDAO implements DAO<String, TransactionDTO>{
 
 	@Override
 	public void delete(String k) throws Exception {
-		
+		db.remove(k);
 	}
 
 	@Override

@@ -16,6 +16,7 @@ import com.kbstar.frame.Sql;
 
 public class CustDaoImpl implements DAO<String, String, Cust> {
 
+	// construct는 Driver Loading
 	public CustDaoImpl() {
 		// Driver Loading
 		try {
@@ -30,6 +31,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 	}
 
 	// getConnection 이라는 함수를 만들어서 쓰기로...
+	// insert delete 등 등 할 때마다 이거 바로 쓰려고..
 	public Connection getConnection() throws Exception {
 		Connection con = null;
 
@@ -44,7 +46,7 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 		String id = props.getProperty("DB_ID");
 		String pwd = props.getProperty("DB_PWD");
 		String url = props.getProperty("DB_URL");
-		con = DriverManager.getConnection(url, id, pwd);
+
 		return con;
 	}
 
@@ -124,19 +126,18 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 				throw e;
 			}
 
-		} catch (Exception e1) {
-			throw e1;
+		} catch (Exception e) {
+			e.printStackTrace();
+			throw e;
 		} 
 		return cust;
 	}
-
 	@Override
 	public List<Cust> selectAll() throws Exception {
-		List<Cust> list = new ArrayList<Cust>();
-		try(Connection con = getConnection(); 
-				PreparedStatement pstmt = con.prepareStatement(Sql.selectAllsql);) {
-			
-			try(ResultSet rset = pstmt.executeQuery()){
+		List<Cust> list = new ArrayList<>();
+		try(Connection con = getConnection();
+				PreparedStatement pstmt = con.prepareStatement(Sql.selectAllsql)) {
+			try(ResultSet rset=pstmt.executeQuery();){
 				while(rset.next()) {
 					Cust cust = null;
 					String db_id = rset.getString("id");
@@ -146,18 +147,12 @@ public class CustDaoImpl implements DAO<String, String, Cust> {
 					cust = new Cust(db_id, db_pwd, name, age);
 					list.add(cust);
 				}
-				
-			}catch(SQLException e) {
-				e.printStackTrace();
 			}
+		}catch(Exception e) {
+			e.printStackTrace();
+			throw e;
 			
-			if(list.size() == 0) {
-				throw new Exception("없음");
-			}
-		} catch (Exception e1) {
-			throw e1;
-		} 
-		
+		}
 		return list;
 	}
 

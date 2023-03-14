@@ -72,7 +72,7 @@ public class CustCRUDServiceImpl implements CRUDService<String, Cust> {
 			if(e instanceof SQLRecoverableException) {
 				throw new Exception("시스템 장애");
 			}else {
-				throw new Exception("조회 내용이 없습니다.");
+				throw new Exception("id가 존재하지 않습니다.");
 			}
 		}
 		
@@ -81,8 +81,18 @@ public class CustCRUDServiceImpl implements CRUDService<String, Cust> {
 
 	@Override
 	public List<Cust> get() throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cust> list = null;
+		try {
+			list = dao.selectAll();
+		}catch(Exception e) {
+			if(e instanceof SQLRecoverableException) {
+				throw new Exception("시스템 장애");
+			}else {
+				throw new Exception("조회 내용이 없습니다.");
+			}
+		}
+		
+		return list;
 	}
 
 }
