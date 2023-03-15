@@ -24,7 +24,7 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 			e.printStackTrace();
 			return;
 		}
-		System.out.println("Driver Loading 성공");
+		//System.out.println("Driver Loading 성공");
 	}
 
 	@Override
@@ -62,10 +62,9 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.cartupdateSql);) {
 			
 			//user_id=? item_id=?, cnt=? WHERE id=?
-			pstmt.setString(1, v.getUser_id());
-			pstmt.setString(2, v.getItem_id());
-			pstmt.setInt(3, v.getCnt());
-			pstmt.setString(4, v.getId());
+
+			pstmt.setInt(1, v.getCnt());
+			pstmt.setString(2, v.getId());
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
 				throw new Exception("없는 id 오류");
@@ -132,7 +131,28 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 
 	@Override
 	public List<Cart> search(String k) throws Exception {
-		// TODO Auto-generated method stub
-		return null;
+		List<Cart> list = new ArrayList<Cart>();
+		
+		try (Connection con = getConnection(); PreparedStatement pstmt = con.prepareStatement(Sql.myCartSelectAllSql);) {
+			pstmt.setString(1, k);
+			try (ResultSet rSet = pstmt.executeQuery();) {
+				while (rSet.next()) {
+					Cart cart = null;
+					String id = rSet.getString("id");
+					String user_id = rSet.getString("user_id");
+					String item_id = rSet.getString("item_id");
+					int cnt = rSet.getInt("cnt");			
+					Date regdate = rSet.getDate("regdate");
+					cart = new Cart(id, user_id, item_id, cnt, regdate);
+					list.add(cart);
+				}
+			} catch (Exception e) {
+				throw e;
+			}
+		} catch (Exception e) {
+			throw e;
+
+		}
+		return list;
 	}
 }

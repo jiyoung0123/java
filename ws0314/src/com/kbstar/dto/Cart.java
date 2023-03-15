@@ -19,7 +19,7 @@ public class Cart {
 	}
 
 
-	public Cart(String id, String user_id, String cust_id, int cnt, Date regdate) {
+	public Cart(String id, String user_id, String item_id, int cnt, Date regdate) {
 		this.id = id;
 		this.user_id = user_id;
 		this.item_id = item_id;
@@ -87,9 +87,12 @@ public class Cart {
 
 	@Override
 	public String toString() {
-		return "Cart [id=" + id + ", user_id=" + user_id + ",item_id=" + item_id + ", cnt=" + cnt + ", regdate="
+		return "Cart [id=" + id + ", user_id=" + user_id + ", item_id=" + item_id + ", cnt=" + cnt + ", regdate="
 				+ regdate + "]";
 	}
+
+
+	
 	
 	
 }

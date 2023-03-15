@@ -18,8 +18,9 @@ public class Sql {
 	// Cart DMl
 	public static String cartdeleteSql = "DELETE FROM cart WHERE id =?";
 	public static String cartinsertSql = "INSERT INTO cart VALUES(?,?,?,?,SYSDATE)";
-	public static String cartupdateSql = "UPDATE cart SET user_id=? item_id=?, cnt=? WHERE id=?";
+	public static String cartupdateSql = "UPDATE cart SET cnt=? WHERE id=?";
 	public static String cartselectSql = "SELECT * FROM cart WHERE id=?";
 	public static String cartselectAllSql = "SELECT * FROM cart";
+	public static String myCartSelectAllSql = "SELECT * FROM cart WHERE user_id = ?";
 
 }

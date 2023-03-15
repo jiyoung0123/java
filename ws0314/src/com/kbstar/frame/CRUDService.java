@@ -2,6 +2,8 @@ package com.kbstar.frame;
 
 import java.util.List;
 
+import com.kbstar.dto.Cart;
+
 public interface CRUDService<K, V> {
 	public void register(V v) throws Exception;
 	public void remove(K k) throws Exception;
