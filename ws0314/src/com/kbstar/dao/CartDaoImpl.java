@@ -63,16 +63,15 @@ public class CartDaoImpl implements DAO<String, String, Cart> {
 			
 			//user_id=? item_id=?, cnt=? WHERE id=?
 			pstmt.setString(1, v.getUser_id());
-			pstmt.setString(2, v.getItem_id());			
+			pstmt.setString(2, v.getItem_id());
 			pstmt.setInt(3, v.getCnt());
-			pstmt.setString(4, v.getId());			
-			//pstmt.setDate(5, (Date) v.getRegdate());
+			pstmt.setString(4, v.getId());
 			int result = pstmt.executeUpdate();
 			if (result == 0) {
-				throw new Exception();
+				throw new Exception("없는 id 오류");
 			}
-		} catch (Exception e1) {
-			throw e1;
+		} catch (Exception e2) {
+			throw e2;
 		}
 
 	}

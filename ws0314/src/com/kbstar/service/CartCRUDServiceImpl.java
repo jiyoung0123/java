@@ -51,11 +51,14 @@ public class CartCRUDServiceImpl implements CRUDService<String, Cart> {
 
 	@Override
 	public void modify(Cart v) throws Exception {
-		try{
+		try {
 			dao.update(v);
-		}catch (Exception e) {
-			e.printStackTrace();
-			throw new Exception();
+		} catch (Exception e) {
+			if (e instanceof SQLRecoverableException) {
+				throw new Exception("시스템 장애입니다.");
+			} else {
+				throw new Exception("없는 id 업데이트 시도 오류");
+			}
 		}
 
 	}
