@@ -33,7 +33,7 @@ public class ItemDaoImpl implements DAO<String, String, Item> {
 			pstmt.setString(1, v.getId());
 			pstmt.setString(2, v.getName());
 			pstmt.setInt(3, v.getPrice());
-			pstmt.setDouble(4, v.getRate());
+			pstmt.setDouble(4, v.getRate()); 
 			// 위의 항목들을 database에 반영하는것
 			pstmt.executeUpdate();
 		} catch (Exception e) {
